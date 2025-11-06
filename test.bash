@@ -1,13 +1,16 @@
-#!/bin/bash
+#!/bin/bash -xv
+# SPDX-FileCopyrightText: 2025 rinron
+#SPDX-License-Identifier: GPL-3.0-only
 
 ng () {
-echo ${1}行目に不備あり
-res=1
+	echo ${1}行目に不備あり
+	res=1
 }
 
 res=0
-a=kill
-[ "$a" = life ] || ng "$LINENO"
-[ "$a" = kill ] || ng "$LINENO"
 
+out=$(seq 5 | ./plus)
+[ "${out}" = 15 ] || ng "$LINENO"
+
+[ "${res}" = 0 ] && echo OK
 exit $res
